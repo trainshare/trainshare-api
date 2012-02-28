@@ -1,0 +1,19 @@
+<mockup version="1.0" skin="sketch" measuredW="541" measuredH="571" mockupW="282" mockupH="510">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="259" y="61" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bgPattern>allWhite</bgPattern>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="327" y="187" w="141" h="145" measuredW="77" measuredH="79" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logo</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="292" y="364" w="-1" h="-1" measuredW="215" measuredH="97" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Login%20with%20Twitter%0ALogin%20with%20Facebook%0ALogin%20with%20Foursquare</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
