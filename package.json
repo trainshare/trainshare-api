@@ -1,0 +1,30 @@
+{
+  "author": "Philipp Küng <trainsharing@philippkueng.ch> (http://philippkueng.ch)",
+  "name": "trainsharing",
+  "description": "A mobile & server application to enable people to share a trainride.",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:philippkueng/trainsharing.git"
+  },
+  "main": "app.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": "~0.6.11"
+  },
+  "dependencies": {
+    "soupselect": "0.2.0",
+    "htmlparser": "1.7.4",
+    "querystring": "0.1.0"
+  },
+  "devDependencies": {
+    "mocha": ">= 0.3.0",
+    "should": ">= 0.5.1",
+  },
+  "licenses": [
+    { "type": "MIT" }
+  ],
+  "optionalDependencies": {}
+}
