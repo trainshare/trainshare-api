@@ -105,7 +105,7 @@ var createDataString = function(data){
 
 var remoteUri = 'http://fahrplan.sbb.ch/bin/bhftafel.exe/dn';
 
-var fetchTimetable = function(station, start, number, index){
+var fetchTimetable = function(station, start, number, current_index){
 
 	setTimeout(function(){
 		var newData = postData;
@@ -156,14 +156,14 @@ var fetchTimetable = function(station, start, number, index){
 	  						if (err){
 	  							throw err;
 	  						} else {
-	  							console.log('saved ' + station + '--' + number + '.html with start time ' + start + 'it is station [' + index + '/' + stations.length + ']');
+	  							console.log('saved ' + station + '--' + number + '.html with start time ' + start + ' is station [' + current_index + '/' + stations.length + ']');
 
 	  							if(departureTimes[departureTimes.length - 1] !== start){
 	  								number += 1;
-	  								fetchTimetable(station, departureTimes[departureTimes.length - 1], number, index);
+	  								fetchTimetable(station, departureTimes[departureTimes.length - 1], number, current_index);
 	  							} else {
 	  								console.log('--> done with ' + station);
-	  								nextStation(index);
+	  								nextStation(current_index);
 	  							}
 	  						}
 						});
@@ -179,14 +179,14 @@ var fetchTimetable = function(station, start, number, index){
 				// console.log(res.text);
 
 			});
-	}, 5000);
+	}, 2000);
 
 };
 
 var nextStation = function(current_index){
 	index = current_index + 1;
 	if(index <= stations.length && typeof stations[index] !== 'undefined'){
-		fetchTimetable(stations[index].name, '00:00', 1, 0);
+		fetchTimetable(stations[index].name, '00:00', 1, index);
 	} else {
 		console.log('==> done with fetching!');
 	}
