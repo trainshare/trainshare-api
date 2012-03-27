@@ -44,7 +44,7 @@ var content = "input=Z%FCrich+HB&selectDate=today&dateBegin=22.03.12&dateEnd=08.
 var postData = {
 	// input: "Zürich HB",
 	input: "Siebnen-Wangen",
-	selectDate: "today",
+	selectDate: "period",
 	dateBegin: "22.03.12",
 	dateEnd: "08.12.12",
 	time: "12:00",
@@ -105,6 +105,8 @@ var createDataString = function(data){
 
 var remoteUri = 'http://fahrplan.sbb.ch/bin/bhftafel.exe/dn';
 
+var errorStations = [];
+
 var fetchTimetable = function(station, start, number, current_index){
 
 	setTimeout(function(){
@@ -128,45 +130,76 @@ var fetchTimetable = function(station, start, number, current_index){
 						var table = select(dom, 'table.hfs_stboard');
 						var departureTimes = [];
 
-						table[0].children.forEach(function(tr){ // Iterating throught the tr elements within tbody.
-							if(typeof tr.attribs !== 'undefined' && typeof tr.attribs.class !== 'undefined'){ // tr has some class
+						if(typeof table !== 'undefined' && typeof table[0] !== 'undefined' && table[0].children !== 'undefined'){
+							table[0].children.forEach(function(tr){ // Iterating throught the tr elements within tbody.
+								if(typeof tr.attribs !== 'undefined' && typeof tr.attribs.class !== 'undefined'){ // tr has some class
 
-								tr.children.forEach(function(td){
-									if(typeof td.attribs !== 'undefined' && typeof td.attribs.class !== 'undefined' && td.attribs.class === 'time'){
+									tr.children.forEach(function(td){
+										if(typeof td.attribs !== 'undefined' && typeof td.attribs.class !== 'undefined' && td.attribs.class === 'time'){
 
-										td.children.forEach(function(span){
-											if(typeof span.children !== 'undefined'){
-												departureTimes.push(span.children[0].data);
-											}
-										});
-									}
-								});
-							}
-						});
+											td.children.forEach(function(span){
+												if(typeof span.children !== 'undefined'){
+													departureTimes.push(span.children[0].data);
+												}
+											});
+										}
+									});
+								}
+							});
 
-						departureTimes.sort(); // Sort all the times from the response to latest one.
+							departureTimes.sort(); // Sort all the times from the response to latest one.
 
-						// console.log(departureTimes[departureTimes.length - 1]);
+							// console.log(departureTimes[departureTimes.length - 1]);
 
-						// Save Response HTML to Disk for further analysis.
-						// Format: Station--IncreasingNumber.html
-						// -- Format: Date--Time--Station.html
+							// Save Response HTML to Disk for further analysis.
+							// Format: Station--IncreasingNumber.html
+							// -- Format: Date--Time--Station.html
 
-						fs.writeFile('data/' + station + '--' + number + '.html', res.text, function (err) {
-	  						if (err){
-	  							throw err;
-	  						} else {
-	  							console.log('saved ' + station + '--' + number + '.html with start time ' + start + ' is station [' + current_index + '/' + stations.length + ']');
+							// Filesystem save station name.
+							var save_station_name = station.replace(/\//, '-+-');
 
-	  							if(departureTimes[departureTimes.length - 1] !== start){
-	  								number += 1;
-	  								fetchTimetable(station, departureTimes[departureTimes.length - 1], number, current_index);
-	  							} else {
-	  								console.log('--> done with ' + station);
-	  								nextStation(current_index);
-	  							}
-	  						}
-						});
+							fs.writeFile('data/' + save_station_name + '--' + number + '.html', res.text, function (err) {
+		  						if (err){
+		  							throw err;
+		  						} else {
+		  							console.log('saved ' + station + '--' + number + '.html with start time ' + start + ' is station [' + current_index + '/' + stations.length + ']');
+
+		  							if(departureTimes[departureTimes.length - 1] !== start){
+		  								number += 1;
+		  								fetchTimetable(station, departureTimes[departureTimes.length - 1], number, current_index);
+		  							} else {
+		  								console.log('--> done with ' + station);
+		  								nextStation(current_index);
+		  							}
+		  						}
+							});
+						} else { // Response was invalid, save response and POST data to disk.
+
+							// Filesystem save station name.
+							var save_station_name = station.replace(/\//, '-+-');
+
+							fs.writeFile('data/' + save_station_name + '--' + number + 'error.html', res.text, function(err){
+								if(err){
+									throw err;
+								} else {
+									console.log('error with ' + station + '--' + number + 'error.html with start time ' + start + ' is station [' + current_index + '/' + stations.length + ']');
+									
+									// Save failed station name and time the error first occured into an object.
+									var failed_station = {
+										name: station,
+										time: start
+									};
+
+									// Add station name to errorStations for easier re-tries later on.
+									errorStations.push(failed_station);
+
+									// Just skip all other attempts for this station.
+									nextStation(current_index);
+								}
+							});
+						}
+
+						
 
 
 						// Find time & date of last element to know what the data for the next request has to be.
@@ -186,12 +219,21 @@ var fetchTimetable = function(station, start, number, current_index){
 var nextStation = function(current_index){
 	index = current_index + 1;
 	if(index <= stations.length && typeof stations[index] !== 'undefined'){
+		console.log('start fetching station ' + stations[index].name);
 		fetchTimetable(stations[index].name, '00:00', 1, index);
 	} else {
-		console.log('==> done with fetching!');
+		console.log(errorStations);
+		fs.writeFile('data/error_stations.json', JSON.stringify(errorStations), function(err){
+			if(err){
+				throw err;
+			} else {
+				console.log('==> done with fetching!');
+			}
+		});
 	}
 };
 
+// nextStation(-1);
 nextStation(-1);
 
 // fetchTimetable('Siebnen-Wangen','00:00', 1);
