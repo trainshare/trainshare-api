@@ -34,7 +34,7 @@ for file in files
     # Get train line number.    
     for div in doc.search("div.hafas div.hac_greybox div b")
       train_number = div.children.to_s
-      puts "-> #{train_number}"
+      # puts "-> #{train_number}"
     end
     
     last_dep_station = nil
@@ -46,7 +46,7 @@ for file in files
 
           current_station = tr.search("td.location a")[0].children.to_s
 
-          puts "-> inserting route from #{last_dep_station} to #{current_station}"
+          # puts "-> inserting route from #{last_dep_station} to #{current_station}"
 
           routes.insert(
             :linename => train_number,
@@ -62,8 +62,8 @@ for file in files
         else
           last_dep_station = tr.search("td.location a")[0].children.to_s
           last_dep_time = tr.search("td.dep.time")[0].children.to_s.gsub(/\n/, "")
-          puts last_dep_station
-          puts last_dep_time
+          # puts last_dep_station
+          # puts last_dep_time
 
         end
       end
