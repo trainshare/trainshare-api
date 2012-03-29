@@ -10,7 +10,10 @@
     "htmlparser": "1.7.4",
     "soupselect": "0.2.0",
     "querystring": "0.1.0",
-    "superagent": "0.4.0"
+    "superagent": "0.4.0",
+    "express": "2.5.8",
+    "mysql": "0.9.5",
+    "neo4j": "0.2.5"
   },
   "devDependencies": {
     "mocha": ">= 0.3.0",
