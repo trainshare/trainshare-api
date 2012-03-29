@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="773" measuredH="563" mockupW="684" mockupH="524">
+<mockup version="1.0" skin="sketch" measuredW="743" measuredH="563" mockupW="654" mockupH="524">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="89" y="53" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
@@ -41,9 +41,9 @@
         <text>Twitter</text>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="123" y="329" w="-1" h="-1" measuredW="215" measuredH="68" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="123" y="329" w="-1" h="-1" measuredW="215" measuredH="97" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>_%20Marcel%20Widmer%2C%20%3E%0A_%20Barbara%20Aschwanden%2C%20%3E</text>
+        <text>_%20Oleg%20Lavrovsky%2C%20%3E%0A_%20Marcel%20Widmer%2C%20%3E%0A_%20Barbara%20Aschwanden%2C%20%3E</text>
       </controlProperties>
     </control>
     <control controlID="12" controlTypeID="com.balsamiq.mockups::Icon" x="132" y="340" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="9" locked="false" isInGroup="-1">
@@ -56,36 +56,59 @@
         <icon>ContactIcon%7Cxsmall</icon>
       </controlProperties>
     </control>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::iPhone" x="491" y="53" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::iPhone" x="461" y="53" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <bgPattern>topOnly</bgPattern>
       </controlProperties>
     </control>
-    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="584" y="161" w="111" h="23" measuredW="99" measuredH="23" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="554" y="161" w="111" h="23" measuredW="97" measuredH="23" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <color>16777215</color>
-        <text>Marcel%20Widmer</text>
+        <text>Oleg%20Lavrovsky</text>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::PointyButton" x="525" y="159" w="-1" h="-1" measuredW="49" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::PointyButton" x="495" y="159" w="-1" h="-1" measuredW="49" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>left</direction>
         <text>Back</text>
       </controlProperties>
     </control>
-    <control controlID="25" controlTypeID="com.balsamiq.mockups::Icon" x="406" y="235" w="-1" h="-1" measuredW="48" measuredH="48" zOrder="14" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>CircledPlusIcon%7Clarge</icon>
-      </controlProperties>
-    </control>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::Button" x="525" y="206" w="207" h="28" measuredW="69" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Button" x="497" y="426" w="207" h="28" measuredW="69" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Meetup</text>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="394" y="352" w="-1" h="-1" measuredW="68" measuredH="23" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Icon" x="132" y="398" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
-        <text/>
+        <icon>ContactIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Label" x="495" y="203" w="-1" h="-1" measuredW="158" measuredH="23" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>My%20Location%20on%20the%20train</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Label" x="505" y="254" w="-1" h="-1" measuredW="177" measuredH="23" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Z%FCrich%20HB%20%20%20%20%20%3C%3C%20%20%20%20%20%20%20%20Bern</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="495" y="297" w="-1" h="-1" measuredW="215" measuredH="40" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lower%20Deck%2C%20ON</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::HSlider" x="499" y="234" w="202" h="-1" measuredW="33" measuredH="11" zOrder="19" locked="false" isInGroup="-1"/>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Canvas" x="499" y="346" w="202" h="70" measuredW="100" measuredH="70" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>roundedSolid</borderStyle>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="505" y="354" w="-1" h="-1" measuredW="123" measuredH="23" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <italic>true</italic>
+        <text>Additional%20Message%3F</text>
       </controlProperties>
     </control>
   </controls>
