@@ -9,7 +9,6 @@
 
 var express = require('express'),
     mysql = require('mysql'),
-    neo4j = require('neo4j'),
     api_login = require('./lib/api_login');
 
 // Start Webserver & API
@@ -41,23 +40,10 @@ client.query(
     });
 
 
-// Initialize Neo4j DB
-var db = new neo4j.GraphDatabase(process.env.NEO4J_URL || "http://localhost:7474");
+
 
 /* ROUTES ------------- */
-app.get('/', function(req, res){
-
-    // db.getNodeById(0, function(err, result){
-    //     if(err) throw err;
-        
-    //     result.incoming('RELATED_TO', function(err, result){
-    //         if(err) throw err;
-    //         // console.log(result);
-    //         console.log(result.length);
-    //         res.send(result);
-    //     });
-    // });
-    
+app.get('/', function(req, res){    
     res.send('trainsharingApp Server says hi.');
 });
 

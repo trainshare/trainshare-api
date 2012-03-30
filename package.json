@@ -13,7 +13,9 @@
     "superagent": "0.4.0",
     "express": "2.5.8",
     "mysql": "0.9.5",
-    "neo4j": "0.2.5"
+    "neo4j": "0.2.5",
+    "twitter": "0.1.18",
+    "step": "0.0.5"
   },
   "devDependencies": {
     "mocha": ">= 0.3.0",
