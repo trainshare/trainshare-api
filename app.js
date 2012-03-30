@@ -21,31 +21,19 @@ app.configure(function(){
 });
 
 // Instantiate MySQL client
-// var client = mysql.createClient({
-//     user: config.mysql.user,
-//     password: config.mysql.password,
-//     database: config.mysql.database,
-//     port: config.mysql.port,
-//     host: config.mysql.host    
-// });
+var client = mysql.createClient({
+    user: process.env.MYSQL_USER ? process.env.MYSQL_USER : 'root',
+    password: process.env.MYSQL_PASSWORD ? process.env.MYSQL_PASSWORD : '',
+    database: process.env.MYSQL_DATABASE ? process.env.MYSQL_DATABASE : 'trainsharing',
+    port: process.env.MYSQL_PORT ? process.env.MYSQL_PORT : 3306,
+    host: process.env.MYSQL_HOST ? process.env.MYSQL_HOST : 'localhost'
+});
 
 // Initialize Neo4j DB
 var db = new neo4j.GraphDatabase(process.env.NEO4J_URL || "http://localhost:7474");
 
 /* ROUTES ------------- */
 app.get('/', function(req, res){
-
-    // client.query(
-    //     'SELECT * FROM routes limit 10',
-    //     function(err, results, fields){
-    //         if(err){
-    //             console.log('an error occured');
-    //             throw err;
-    //         }
-    //         console.log(results);
-    //         res.send(results);
-    //     }
-    // );
 
     // db.getNodeById(0, function(err, result){
     //     if(err) throw err;
@@ -59,6 +47,18 @@ app.get('/', function(req, res){
     // });
     
     res.send('trainsharingApp Server says hi.');
+});
+
+app.get('/mysql_test', function(req, res){
+    client.query(
+        'SELECT * FROM routes limit 10',
+        function(err, results, fields){
+            if(err){
+                console.log('an error occurred');
+            }
+            res.send(results);
+        }
+    );
 });
 
 app.post('/login', api_login);
