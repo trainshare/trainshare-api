@@ -9,7 +9,6 @@
 
 var express = require('express'),
     mysql = require('mysql'),
-    config = require('./config'),
     neo4j = require('neo4j'),
     api_login = require('./lib/api_login');
 
