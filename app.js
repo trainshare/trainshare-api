@@ -29,6 +29,18 @@ var client = mysql.createClient({
     host: process.env.MYSQL_HOST ? process.env.MYSQL_HOST : 'localhost'
 });
 
+/* MAKE SURE ALL THE TABLES ARE THERE ----------- */
+client.query(
+    'CREATE TABLE routes_users (id INT NOT NULL, routes_id INT NOT NULL, users_id INT NOT NULL, PRIMARY KEY (id))',
+    function(err, results, fields){
+        if(err && typeof err.message !== 'undefined' && err.message !== "Table \'routes_users\' already exists"){
+            console.log(err);
+        } else {
+            console.log('creating routes_users table if necessary');
+        }
+    });
+
+
 // Initialize Neo4j DB
 var db = new neo4j.GraphDatabase(process.env.NEO4J_URL || "http://localhost:7474");
 
