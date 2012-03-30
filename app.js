@@ -22,16 +22,16 @@ app.configure(function(){
 });
 
 // Instantiate MySQL client
-var client = mysql.createClient({
-    user: config.mysql.user,
-    password: config.mysql.password,
-    database: config.mysql.database,
-    port: config.mysql.port,
-    host: config.mysql.host    
-});
+// var client = mysql.createClient({
+//     user: config.mysql.user,
+//     password: config.mysql.password,
+//     database: config.mysql.database,
+//     port: config.mysql.port,
+//     host: config.mysql.host    
+// });
 
 // Initialize Neo4j DB
-var db = new neo4j.GraphDatabase('http://localhost:7474');
+var db = new neo4j.GraphDatabase(process.env.NEO4J_URL || "http://localhost:7474");
 
 /* ROUTES ------------- */
 app.get('/', function(req, res){
@@ -50,7 +50,7 @@ app.get('/', function(req, res){
 
     // db.getNodeById(0, function(err, result){
     //     if(err) throw err;
-    //     
+        
     //     result.incoming('RELATED_TO', function(err, result){
     //         if(err) throw err;
     //         // console.log(result);
@@ -64,5 +64,5 @@ app.get('/', function(req, res){
 
 app.post('/login', api_login);
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 console.log('trainsharing server running.');
