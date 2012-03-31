@@ -10,6 +10,7 @@
 var express = require('express'),
     mysql = require('mysql'),
     api_login = require('./lib/api_login'),
+    api_checkin = require('./lib/api_checkin'),
     neo4j = require('./lib/neo4j');
 
 // Start Webserver & API
