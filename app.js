@@ -43,7 +43,7 @@ client.query(
 
 // users -> needed to store Neo4j Node ID and unique identifier for network.
 client.query(
-    'CREATE TABLE users (id INT NOT NULL, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, PRIMARY KEY (id))',
+    'CREATE TABLE users (id INT NOT NULL, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, trainsharing_uid VARCHAR(40) NOT NULL, PRIMARY KEY (id))',
     function(err, results, fields){
         if(err && typeof err.message !== 'undefined' && err.message !== "Table \'users\' already exists"){
             console.log(err);
