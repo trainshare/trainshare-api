@@ -23,7 +23,7 @@
     "should": ">= 0.5.1"
   },
   "engines": {
-    "node": ">=0.6.10"
+    "node": "0.6.11"
   },
   "repository": {
     "type": "git",
