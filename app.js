@@ -70,7 +70,7 @@ app.get('/mysql_test', function(req, res){
     );
 });
 
-app.post('/login', api_login);
+app.post('/v1/login', api_login);
 
 app.listen(process.env.PORT || 3000);
 console.log('trainsharing server running.');
