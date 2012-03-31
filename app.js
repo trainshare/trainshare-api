@@ -83,5 +83,9 @@ app.post('/v1/login', function(req, res){
     api_login(req, res, client);
 });
 
+app.post('/v1/checkin', function(req, res){
+   api_checkin(req, res, client); 
+});
+
 app.listen(process.env.PORT || 3000);
 console.log('trainsharing server running.');
