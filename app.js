@@ -9,7 +9,8 @@
 
 var express = require('express'),
     mysql = require('mysql'),
-    api_login = require('./lib/api_login');
+    api_login = require('./lib/api_login'),
+    neo4j = require('./lib/neo4j');
 
 // Start Webserver & API
 var app = express.createServer();
@@ -68,6 +69,14 @@ app.get('/mysql_test', function(req, res){
             res.send(results);
         }
     );
+});
+
+app.get('/neo4j_test', function(req, res){
+    neo4j.InsertSampleNode('my_sample_node', function(err, result){
+        console.log(err);
+        console.log(result);
+        res.json(result, 200);
+    });
 });
 
 app.post('/v1/login', function(req, res){
