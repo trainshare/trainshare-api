@@ -57,7 +57,8 @@ client.query(
 
 /* ROUTES ------------- */
 app.get('/', function(req, res){    
-    res.send('trainsharingApp Server says hi.');
+    // res.send('trainsharingApp Server says hi.');
+    res.sendfile('static/index.html');
 });
 
 app.get('/mysql_test', function(req, res){
@@ -86,6 +87,11 @@ app.post('/v1/login', function(req, res){
 
 app.post('/v1/checkin', function(req, res){
    api_checkin(req, res, client); 
+});
+
+app.get('/:file', function(req, res){
+    console.log(req.params.file);
+    res.sendfile('static/' + req.params.file);
 });
 
 app.listen(process.env.PORT || 3000);
