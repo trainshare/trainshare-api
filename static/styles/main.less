@@ -1,0 +1,46 @@
+@link-color: black;
+@text-color: black;
+@background-color: white;
+
+
+body
+{
+	background-color: @background-color;
+	color: @text-color;
+	//font-size:100%;
+	//line-height:1.25em;
+}
+
+
+ul#nav
+{
+	list-style-type: none;
+
+	li
+	{
+		display: inline;
+		//font-size:2em;
+		margin-left: 1em;
+	}
+}
+
+.app
+{
+	background: url(../img/trainshareapp.png);
+	height:754px;
+	width: 837px;
+	margin: 0 auto;
+	background-repeat:no-repeat;
+}
+
+a
+{
+  text-decoration: none;
+  color: @text-color;
+  
+  &:hover
+  {
+    color: @link-color;
+  }
+}
+
