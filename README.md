@@ -1,10 +1,38 @@
-# Trainsharing
+# Trainshare
 
-A mobile & server application to enable people to share a trainride.
+An API for the trainshare apps which will connect you with your friends traveling by train.
+
+## Setup (OSX) - For running the API
+
+Since OSX has no real packet manager go ahead and [install Homebrew](https://github.com/mxcl/homebrew/wiki/installation).
+
+Then go ahead and install Neo4j aswell as MySQL.
+
+  $ brew install neo4j
+  $ brew install mysql
+
+Now, if you haven't installed Node.js yet go ahead and follow the steps below.
+
+  $ git clone git://github.com/joyent/node.git
+  $ cd node/
+  $ git checkout v0.6.12 (or latest stable release at that time)
+  $ ./configure
+  $ sudo make
+  $ sudo make install
+
+As a final step clone this repo and install the npm dependencies.
+
+  $ git clone git://github.com/philippkueng/trainsharingApp.git
+  $ cd trainsharingApp/
+  $ npm install
+  
+And run it.
+
+  $ node app.js
 
 ---
 
-## License
+## License (MIT)
 
 Copyright (C) 2012 Philipp Küng
 
