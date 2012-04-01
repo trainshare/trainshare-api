@@ -8,29 +8,29 @@ Since OSX has no real packet manager go ahead and [install Homebrew](https://git
 
 Then go ahead and install Neo4j aswell as MySQL.
 
-  $ brew install neo4j
-  $ brew install mysql
+    $ brew install neo4j
+    $ brew install mysql
+    
+Import the [database dump](http://philippkueng.ch/files/trainsharing_routes.sql) used to make the matches into your MySQL Database.
 
 Now, if you haven't installed Node.js yet go ahead and follow the steps below.
 
-  $ git clone git://github.com/joyent/node.git
-  $ cd node/
-  $ git checkout v0.6.12 (or latest stable release at that time)
-  $ ./configure
-  $ sudo make
-  $ sudo make install
+    $ git clone git://github.com/joyent/node.git
+    $ cd node/
+    $ git checkout v0.6.12 (or latest stable release at that time)
+    $ ./configure
+    $ sudo make
+    $ sudo make install
 
 As a final step clone this repo and install the npm dependencies.
 
-  $ git clone git://github.com/philippkueng/trainsharingApp.git
-  $ cd trainsharingApp/
-  $ npm install
+    $ git clone git://github.com/philippkueng/trainsharingApp.git
+    $ cd trainsharingApp/
+    $ npm install
   
 And run it.
 
-  $ node app.js
-
----
+    $ node app.js
 
 ## License (MIT)
 
