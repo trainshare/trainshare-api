@@ -57,7 +57,6 @@ client.query(
 
 /* ROUTES ------------- */
 app.get('/', function(req, res){    
-    // res.send('trainsharingApp Server says hi.');
     res.sendfile('static/index.html');
 });
 
@@ -78,14 +77,6 @@ app.get('/neo4j_test', function(req, res){
         res.json(result, 200);
     });
 });
-
-// app.get('/neo4j_test', function(req, res){
-//     neo4j.InsertSampleNode('my_sample_node', function(err, result){
-//         console.log(err);
-//         console.log(result);
-//         res.json(result, 200);
-//     });
-// });
 
 app.post('/v1/login', function(req, res){
     api_login(req, res, client);
