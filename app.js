@@ -75,11 +75,17 @@ app.get('/mysql_test', function(req, res){
 
 app.get('/neo4j_test', function(req, res){
     neo4j.InsertSampleNode('my_sample_node', function(err, result){
-        console.log(err);
-        console.log(result);
         res.json(result, 200);
     });
 });
+
+// app.get('/neo4j_test', function(req, res){
+//     neo4j.InsertSampleNode('my_sample_node', function(err, result){
+//         console.log(err);
+//         console.log(result);
+//         res.json(result, 200);
+//     });
+// });
 
 app.post('/v1/login', function(req, res){
     api_login(req, res, client);
@@ -96,3 +102,4 @@ app.get('/:file', function(req, res){
 
 app.listen(process.env.PORT || 3000);
 console.log('trainsharing server running.');
+
