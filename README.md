@@ -45,7 +45,7 @@ Request
          
 Response
     
-    {"trainsharingID":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d"}    
+    {"trainshare_id":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d"}    
 
 ## License (MIT)
 
