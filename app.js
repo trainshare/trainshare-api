@@ -34,7 +34,7 @@ var client = mysql.createClient({
 
 // routes_users
 client.query(
-    'CREATE TABLE routes_users (id INT NOT NULL, routes_id INT NOT NULL, users_id INT NOT NULL, PRIMARY KEY (id))',
+    'CREATE TABLE routes_users (id INT NOT NULL AUTO_INCREMENT, routes_id INT NOT NULL, users_id INT NOT NULL, PRIMARY KEY (id))',
     function(err, results, fields){
         if(err && typeof err.message !== 'undefined' && err.message !== "Table \'routes_users\' already exists"){
             console.log(err);
@@ -45,7 +45,7 @@ client.query(
 
 // users -> needed to store Neo4j Node ID and unique identifier for network.
 client.query(
-    'CREATE TABLE users (id INT NOT NULL, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, trainsharing_uid VARCHAR(40) NOT NULL, PRIMARY KEY (id))',
+    'CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, trainsharing_uid VARCHAR(40) NOT NULL, PRIMARY KEY (id))',
     function(err, results, fields){
         if(err && typeof err.message !== 'undefined' && err.message !== "Table \'users\' already exists"){
             console.log(err);

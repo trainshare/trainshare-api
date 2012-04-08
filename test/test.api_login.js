@@ -1,7 +1,7 @@
 var should = require('should'),
     request = require('superagent');
 
-var api_url = 'http://localhost:3000';
+var api_url = 'http://localhost:3000/v1';
 
 describe('Testing the /login API endpoint', function(){
    
@@ -59,11 +59,5 @@ describe('Testing the /login API endpoint', function(){
                 });
         });
     });
-   
-   // describe('Posting a network without tokens', function(){
-   //    it('should return an error', function(done){
-   //        
-   //    });
-   // });
     
 });
