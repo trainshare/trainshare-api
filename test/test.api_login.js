@@ -3,9 +3,9 @@ var should = require('should'),
 
 var api_url = 'http://localhost:3000/v1';
 
-describe('Testing the /login API endpoint', function(){
+describe('=> Testing the /login API endpoint', function(){
    
-    describe('Making an empty request', function(){
+    describe('-> Making an empty request', function(){
         it('should return an error with Content-Type=x-www-form-urlencoded', function(done){
             request.post(api_url + '/login')
                 .type('form')
@@ -28,7 +28,7 @@ describe('Testing the /login API endpoint', function(){
         });
     });
    
-    describe('Making requests with data', function(){
+    describe('-> Making requests with data', function(){
         it('should return an error with network not defined', function(done){
             request.post(api_url + '/login')
                 .send({network:''})
@@ -55,6 +55,20 @@ describe('Testing the /login API endpoint', function(){
                 .end(function(res){
                     res.body.error.should.equal('No authentication tokens given');
                     res.statusCode.should.equal(400);
+                    done();
+                });
+        });
+
+        it('should return a correct response', function(done){
+            request.post(api_url + '/login')
+                .send({
+                    network: 'twitter',
+                    access_token: '6848912-Pbfyb6IKViwL5dSvkEbUKFGeCX1HKxayRftnO7v14c',
+                    access_token_secret: 'WtATrHj9UHPTsad4J1QyAVjffErMTyctPiyxk6KpvYE'
+                })
+                .end(function(res){
+                    res.statusCode.should.equal(200);
+                    res.body.trainsharingID.length.should.equal(36);
                     done();
                 });
         });
