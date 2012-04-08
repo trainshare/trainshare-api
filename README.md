@@ -31,6 +31,21 @@ As a final step clone this repo and install the npm dependencies.
 And run it.
 
     $ node app.js
+    
+## API documentation
+
+### /login
+
+Request
+
+    curl -X POST
+         -d '{"network":"twitter","access_token":"your token","access_token_secret":"your secret token"}'
+         -H "Content-Type:application/json"
+         http://trainshare.ch/v1/login
+         
+Response
+    
+    {"trainsharingID":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d"}    
 
 ## License (MIT)
 
