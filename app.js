@@ -10,10 +10,14 @@
 var express = require('express'),
     mysql = require('mysql'),
     moment = require('moment'),
-    api_login = require('./lib/api_login'),
-    api_checkin = require('./lib/api_checkin'),
-    api_read = require('./lib/api_read'),
-    neo4j = require('./lib/neo4j');
+    util = require('util'),
+    events = require('events').EventEmitter,
+    Worker = require('./lib/worker');
+
+// Initialize EventEmitter based Worker
+util.inherits(Worker, events);
+var worker = new Worker(events);
+
 
 // Start Webserver & API
 var app = express.createServer();
@@ -74,22 +78,31 @@ app.get('/mysql_test', function(req, res){
     );
 });
 
-app.get('/neo4j_test', function(req, res){
-    neo4j.InsertSampleNode('my_sample_node', function(err, result){
-        res.json(result, 200);
+app.post('/v1/login', function(req, res){
+    worker.api_login({
+        request: req,
+        response: res,
+        mysql: client,
+        moment: moment
     });
 });
 
-app.post('/v1/login', function(req, res){
-    api_login(req, res, client);
-});
-
 app.post('/v1/checkin', function(req, res){
-    api_checkin(req, res, client, moment); 
+    worker.api_checkin({
+        request: req,
+        response: res,
+        mysql: client,
+        moment: moment
+    });
 });
 
 app.get('/v1/read', function(req, res){
-    api_read(req, res, client, moment);
+    worker.api_read({
+        request: req,
+        response: res,
+        mysql: client,
+        moment: moment
+    });
 });
 
 app.get('/:file', function(req, res){
@@ -99,4 +112,3 @@ app.get('/:file', function(req, res){
 
 app.listen(process.env.PORT || 3000);
 console.log('trainsharing server running.');
-
