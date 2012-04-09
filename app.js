@@ -9,6 +9,7 @@
 
 var express = require('express'),
     mysql = require('mysql'),
+    moment = require('moment'),
     api_login = require('./lib/api_login'),
     api_checkin = require('./lib/api_checkin'),
     api_read = require('./lib/api_read'),
@@ -84,11 +85,11 @@ app.post('/v1/login', function(req, res){
 });
 
 app.post('/v1/checkin', function(req, res){
-    api_checkin(req, res, client); 
+    api_checkin(req, res, client, moment); 
 });
 
 app.get('/v1/read', function(req, res){
-    api_read(req, res, client);
+    api_read(req, res, client, moment);
 });
 
 app.get('/:file', function(req, res){

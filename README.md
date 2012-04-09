@@ -56,7 +56,7 @@ Checkin to a train ride by sending details about the departure and arrival stati
 Request
 
     curl -X POST
-         -d '[{"departure_station":"Bern","departure_time":"16:34","arrival_station":"Basel SBB","arrival_time":"17:29","train_id":"IC 1080"}]'
+         -d '[{"departure_station":"Bern","departure_time":"2012-04-09T16:34:00+00:00","arrival_station":"Basel SBB","arrival_time":"2012-04-09T17:29:00+00:00","train_id":"IC 1080"}]'
          -H "Content-Type:application/json"
          http://trainshare.ch/v1/checkin?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
          
@@ -70,10 +70,9 @@ Response
         "message":"a message", // 120 characters max
         "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_bigger.png",
         "overlaps":{
-            "time":"2:23",
-            "departure_time":"12:03",
+            "departure_time":"2012-04-09T10:03:34+00:00",
             "departure_station":"Bern",
-            "arrival_time":"13:14",
+            "arrival_time":"2012-04-09T11:14:34+00:00",
             "arrival_station":"Basel SBB"
         }
     },{
@@ -84,10 +83,9 @@ Response
         "message":"a message",
         "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_biger.png",
         "overlaps":{
-            "time":"12:23",
-            "departure_time":"12:03",
+            "departure_time":"2012-04-09T10:03:34+00:00",
             "departure_station":"Bern",
-            "arrival_time":"13:14",
+            "arrival_time":"2012-04-09T11:14:34+00:00",
             "arrival_station":"Basel SBB"
         }
     }]
@@ -110,10 +108,9 @@ Response
         "message":"a message", // 120 characters max
         "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_bigger.png",
         "overlaps":{
-            "time":"2:23",
-            "departure_time":"12:03",
+            "departure_time":"2012-04-09T10:03:34+00:00",
             "departure_station":"Bern",
-            "arrival_time":"13:14",
+            "arrival_time":"2012-04-09T11:14:34+00:00",
             "arrival_station":"Basel SBB"
         }
     },{
@@ -124,10 +121,9 @@ Response
         "message":"a message",
         "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_biger.png",
         "overlaps":{
-            "time":"12:23",
-            "departure_time":"12:03",
+            "departure_time":"2012-04-09T10:03:34+00:00",
             "departure_station":"Bern",
-            "arrival_time":"13:14",
+            "arrival_time":"2012-04-09T11:14:34+00:00",
             "arrival_station":"Basel SBB"
         }
     }]
