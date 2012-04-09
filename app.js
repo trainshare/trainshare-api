@@ -16,7 +16,8 @@ var express = require('express'),
 
 // Initialize EventEmitter based Worker
 util.inherits(Worker, events);
-var worker = new Worker(events);
+var worker = new Worker(util, events);
+worker.init();
 
 
 // Start Webserver & API
@@ -51,7 +52,7 @@ client.query(
 
 // users -> needed to store Neo4j Node ID and unique identifier for network.
 client.query(
-    'CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, trainsharing_uid VARCHAR(40) NOT NULL, PRIMARY KEY (id))',
+    'CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, trainshare_id VARCHAR(40) NOT NULL, PRIMARY KEY (id))',
     function(err, results, fields){
         if(err && typeof err.message !== 'undefined' && err.message !== "Table \'users\' already exists"){
             console.log(err);
@@ -79,7 +80,7 @@ app.get('/mysql_test', function(req, res){
 });
 
 app.post('/v1/login', function(req, res){
-    worker.api_login({
+    worker.login({
         request: req,
         response: res,
         mysql: client,
@@ -88,7 +89,7 @@ app.post('/v1/login', function(req, res){
 });
 
 app.post('/v1/checkin', function(req, res){
-    worker.api_checkin({
+    worker.checkin({
         request: req,
         response: res,
         mysql: client,
@@ -97,7 +98,7 @@ app.post('/v1/checkin', function(req, res){
 });
 
 app.get('/v1/read', function(req, res){
-    worker.api_read({
+    worker.read({
         request: req,
         response: res,
         mysql: client,
