@@ -31,6 +31,6 @@
     "url": "https://github.com/philippkueng/trainsharing.git"
   },
   "scripts": {
-    "test": "make test"
+    "test": "mocha -R spec"
   }
 }
