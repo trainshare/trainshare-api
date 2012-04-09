@@ -36,6 +36,8 @@ And run it.
 
 ### /login
 
+Send over the social network tokens to trainshare.ch so we can fetch the users friends for later matching. It'll return a unique trainshare_id for each user.
+
 Request
 
     curl -X POST
@@ -45,7 +47,90 @@ Request
          
 Response
     
-    {"trainshare_id":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d"}    
+    {"trainshare_id":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d"}
+    
+### /checkin
+
+Checkin to a train ride by sending details about the departure and arrival station aswell as the train_id for each train used during the ride. 
+
+Request
+
+    curl -X POST
+         -d '[{"departure_station":"Bern","departure_time":"16:34","arrival_station":"Basel SBB","arrival_time":"17:29","train_id":"IC 1080"}]'
+         -H "Content-Type:application/json"
+         http://trainshare.ch/v1/checkin?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
+         
+Response
+
+    [{
+        "name":"Darth Vader",
+        "trainshare_id":"5eedcdfb-db12-4abd-a46f-694361f3cbb6",
+        "position":4, // range from 0 to 10
+        "upper":false,
+        "message":"a message", // 120 characters max
+        "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_bigger.png",
+        "overlaps":{
+            "time":"2:23",
+            "departure_time":"12:03",
+            "departure_station":"Bern",
+            "arrival_time":"13:14",
+            "arrival_station":"Basel SBB"
+        }
+    },{
+        "name":"Yöda",
+        "trainshare_id":"5eedcdfb-db12-4abd-a46f-694361f3cbb5",
+        "position":9,
+        "upper":true,
+        "message":"a message",
+        "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_biger.png",
+        "overlaps":{
+            "time":"12:23",
+            "departure_time":"12:03",
+            "departure_station":"Bern",
+            "arrival_time":"13:14",
+            "arrival_station":"Basel SBB"
+        }
+    }]
+         
+### /read
+
+After checkin the /read endpoint can be used to check wether new friends have checked in. Will return the same response as the /checkin.
+
+Request
+
+    curl http://trainshare.ch/v1/read?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
+    
+Response
+
+    [{
+        "name":"Darth Vader",
+        "trainshare_id":"5eedcdfb-db12-4abd-a46f-694361f3cbb6",
+        "position":4, // range from 0 to 10
+        "upper":false,
+        "message":"a message", // 120 characters max
+        "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_bigger.png",
+        "overlaps":{
+            "time":"2:23",
+            "departure_time":"12:03",
+            "departure_station":"Bern",
+            "arrival_time":"13:14",
+            "arrival_station":"Basel SBB"
+        }
+    },{
+        "name":"Yöda",
+        "trainshare_id":"5eedcdfb-db12-4abd-a46f-694361f3cbb5",
+        "position":9,
+        "upper":true,
+        "message":"a message",
+        "image_url":"https://si0.twimg.com/sticky/default_profile_images/default_profile_3_biger.png",
+        "overlaps":{
+            "time":"12:23",
+            "departure_time":"12:03",
+            "departure_station":"Bern",
+            "arrival_time":"13:14",
+            "arrival_station":"Basel SBB"
+        }
+    }]
 
 ## License (MIT)
 
