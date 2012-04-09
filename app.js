@@ -11,6 +11,7 @@ var express = require('express'),
     mysql = require('mysql'),
     api_login = require('./lib/api_login'),
     api_checkin = require('./lib/api_checkin'),
+    api_read = require('./lib/api_read'),
     neo4j = require('./lib/neo4j');
 
 // Start Webserver & API
@@ -83,7 +84,11 @@ app.post('/v1/login', function(req, res){
 });
 
 app.post('/v1/checkin', function(req, res){
-   api_checkin(req, res, client); 
+    api_checkin(req, res, client); 
+});
+
+app.get('/v1/read', function(req, res){
+    api_read(req, res, client);
 });
 
 app.get('/:file', function(req, res){
