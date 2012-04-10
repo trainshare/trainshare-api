@@ -53,6 +53,8 @@ Response
 
 Checkin to a train ride by sending details about the departure and arrival station aswell as the train_id for each train used during the ride. 
 
+`Time/Date` is formatted according to ISO-8601 taking the swiss timezone (GMT+1 or in summer GMT+2) as a basis (+00:00).
+
 Request
 
     curl -X POST
@@ -93,6 +95,8 @@ Response
 ### /read
 
 After checkin the /read endpoint can be used to check wether new friends have checked in. Will return the same response as the /checkin.
+
+`Time/Date` is formatted according to ISO-8601 taking the swiss timezone (GMT+1 or in summer GMT+2) as a basis (+00:00).
 
 Request
 
