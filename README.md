@@ -36,18 +36,18 @@ And run it.
 
 ### /login
 
-Send over the social network tokens to trainshare.ch so we can fetch the users friends for later matching. It'll return a unique trainshare_id for each user.
+Send over the social network tokens to trainshare.ch so we can fetch the users friends for later matching. It'll return a unique trainshare_id and a secret trainshare_token for each user.
 
 Request
 
     curl -X POST
          -d '{"network":"twitter","access_token":"your token","access_token_secret":"your secret token"}'
          -H "Content-Type:application/json"
-         http://trainshare.ch/v1/login
+         https://trainshare.herokuapp.com/v1/login
          
 Response
     
-    {"trainshare_id":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d"}
+    {"trainshare_id":"6b34bf17-da69-4593-b7c9-7d0dc9e6947d", "trainshare_token": "6b3asf17-da69-4593-b7c9-7d0dc9e6947d"}
     
 ### /checkin
 
