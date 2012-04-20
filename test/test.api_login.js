@@ -69,7 +69,6 @@ describe('=> Testing the /login API endpoint', function(){
                 .end(function(res){
                     res.statusCode.should.equal(200);
                     res.body.trainshare_id.length.should.equal(36);
-                    console.log(res.body);
                     res.body.trainshare_token.length.should.equal(36);
                     done();
                 });
