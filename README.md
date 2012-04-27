@@ -58,9 +58,9 @@ Checkin to a train ride by sending details about the departure and arrival stati
 Request
 
     curl -X POST
-         -d '[{"departure_station":"Bern","departure_time":"2012-04-09T16:34:00+00:00","arrival_station":"Basel SBB","arrival_time":"2012-04-09T17:29:00+00:00","train_id":"IC 1080"}]'
+         -d '{"trainshare_token":"377ad94b-147a-4ac0-9a81-5c24bf6bf044","data":[{"departure_station":"Bern","departure_time":"2012-04-09T16:34:00+00:00","arrival_station":"Basel SBB","arrival_time":"2012-04-09T17:29:00+00:00","train_id":"IC 1080"}]}'
          -H "Content-Type:application/json"
-         http://trainshare.ch/v1/checkin?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
+         http://trainshare.herokuapp.com/v1/checkin?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
          
 Response
 
@@ -100,7 +100,10 @@ After checkin the /read endpoint can be used to check wether new friends have ch
 
 Request
 
-    curl http://trainshare.ch/v1/read?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
+    curl -X POST
+         -d '{"trainshare_token":"377ad94b-147a-4ac0-9a81-5c24bf6bf044"}'
+         -H "Content-Type:application/json"
+         http://trainshare.herokuapp.com/v1/read?trainshare_id=6b34bf17-da69-4593-b7c9-7d0dc9e6947d
     
 Response
 
