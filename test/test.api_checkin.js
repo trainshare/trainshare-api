@@ -1,7 +1,7 @@
 var should = require('should'),
     request = require('superagent');
 
-var api_url = 'http://localhost:3000/v1/checkin';
+var api_url = 'http://localhost:5000/v1/checkin';
 
 describe('=> Testing the /checkin API endpoint', function(){
     describe('-> Making an empty request', function(){

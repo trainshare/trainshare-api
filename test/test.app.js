@@ -1,7 +1,7 @@
 var should = require('should'),
     request = require('superagent');
 
-var root_url = 'http://localhost:3000';
+var root_url = 'http://localhost:5000';
 
 describe('=> Website', function(){
     describe('-> Make root request', function(){
