@@ -132,6 +132,12 @@ Response
         }
     }]
 
+## Tests
+
+Before you run any tests make sure that you have a local instance of the [MySQL](http://www.mysql.com/) and [Neo4j](http://neo4j.org/) Database installed and running. Then execute the tests.
+
+    $ npm test
+
 ## License (MIT)
 
 Copyright (C) 2012 Philipp Küng
