@@ -59,6 +59,28 @@ describe('=> Testing the /checkin API endpoint', function(){
             });
     });
 
+    describe('-> Make a request with an outdated trainshare_token', function(){
+        it('should return an error message', function(done){
+            request
+                .post(api_url + '?trainshare_id=' + trainshare_id)
+                .send({
+                    trainshare_token: '499fee3c-4a00-4382-bbc4-9b3fc0aa9e04',
+                    data: [{
+                        departure_station: 'Bern',
+                        departure_time: '2012-04-09T16:34:00+00:00',
+                        arrival_station: 'Basel SBB',
+                        arrival_time: '2012-04-09T17:29:00+00:00',
+                        train_id: 'IC 1080'
+                    }]
+                })
+                .end(function(result){
+                    result.statusCode.should.equal(400);
+                    result.body.error.should.equal('trainshare_id and trainshare_token do not match');
+                    done();
+                });
+        });
+    });
+
     describe('-> Make a request with a valid POST body', function(){
         it('should return a valid response with only sending an array of 1', function(done){
             request
