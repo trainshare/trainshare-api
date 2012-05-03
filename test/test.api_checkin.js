@@ -1,7 +1,7 @@
 var should = require('should'),
     request = require('superagent');
 
-var api_url = 'http://localhost:3000/v1/checkin';
+var api_url = 'http://localhost:5000/v1/checkin';
 
 describe('=> Testing the /checkin API endpoint', function(){
     describe('-> Making an empty request', function(){
@@ -39,18 +39,62 @@ describe('=> Testing the /checkin API endpoint', function(){
                 });
         });
     });
+    
+    
+    // Creating a real user.
+    var trainshare_id = null;
+    var trainshare_token = null;
+
+    before(function(done){
+        request.post('http://localhost:5000/v1/login')
+            .send({
+               network: 'twitter',
+                access_token: '6848912-Pbfyb6IKViwL5dSvkEbUKFGeCX1HKxayRftnO7v14c',
+                access_token_secret: 'WtATrHj9UHPTsad4J1QyAVjffErMTyctPiyxk6KpvYE' 
+            })
+            .end(function(res){
+                trainshare_id = res.body.trainshare_id;
+                trainshare_token = res.body.trainshare_token;
+                done();
+            });
+    });
+
+    describe('-> Make a request with an outdated trainshare_token', function(){
+        it('should return an error message', function(done){
+            request
+                .post(api_url + '?trainshare_id=' + trainshare_id)
+                .send({
+                    trainshare_token: '499fee3c-4a00-4382-bbc4-9b3fc0aa9e04',
+                    data: [{
+                        departure_station: 'Bern',
+                        departure_time: '2012-04-09T16:34:00+00:00',
+                        arrival_station: 'Basel SBB',
+                        arrival_time: '2012-04-09T17:29:00+00:00',
+                        train_id: 'IC 1080'
+                    }]
+                })
+                .end(function(result){
+                    result.statusCode.should.equal(400);
+                    result.body.error.should.equal('trainshare_id and trainshare_token do not match');
+                    done();
+                });
+        });
+    });
 
     describe('-> Make a request with a valid POST body', function(){
         it('should return a valid response with only sending an array of 1', function(done){
             request
-                .post(api_url + '?trainshare_id=499fee3c-4a00-4382-bbc4-9b3fc0a49e04')
-                .send([{
-                    departure_station: 'Bern',
-                    departure_time: '2012-04-09T16:34:00+00:00',
-                    arrival_station: 'Basel SBB',
-                    arrival_time: '2012-04-09T17:29:00+00:00',
-                    train_id: 'IC 1080'
-                }])
+                .post(api_url + '?trainshare_id=' + trainshare_id)
+                .send({
+                    trainshare_token: trainshare_token,
+                    data: [{
+                        departure_station: 'Bern',
+                        departure_time: '2012-04-09T16:34:00+00:00',
+                        arrival_station: 'Basel SBB',
+                        arrival_time: '2012-04-09T17:29:00+00:00',
+                        train_id: 'IC 1080'
+                    }]
+                })
                 .end(function(result){
                     result.statusCode.should.equal(200);
                     done();

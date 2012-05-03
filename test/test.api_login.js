@@ -1,7 +1,7 @@
 var should = require('should'),
     request = require('superagent');
 
-var api_url = 'http://localhost:3000/v1';
+var api_url = 'http://localhost:5000/v1';
 
 describe('=> Testing the /login API endpoint', function(){
    

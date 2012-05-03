@@ -111,5 +111,5 @@ app.get('/:file', function(req, res){
     res.sendfile('static/' + req.params.file);
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 5000);
 console.log('trainsharing server running.');
