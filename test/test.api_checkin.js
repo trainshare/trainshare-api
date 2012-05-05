@@ -88,11 +88,17 @@ describe('=> Testing the /checkin API endpoint', function(){
                 .send({
                     trainshare_token: trainshare_token,
                     data: [{
-                        departure_station: 'Bern',
-                        departure_time: '2012-04-09T16:34:00+00:00',
-                        arrival_station: 'Basel SBB',
-                        arrival_time: '2012-04-09T17:29:00+00:00',
-                        train_id: 'IC 1080'
+                        departure_station: 'Siebnen-Wangen',
+                        departure_time: '2012-05-04T09:03:00+00:00',
+                        arrival_station: 'Zürich HB',
+                        arrival_time: '2012-05-04T09:50:00+00:00',
+                        train_id: 'S2 18234'
+                    }, {
+                        departure_station: 'Zürich HB',
+                        departure_time: '2012-05-04T10:04:00+00:00',
+                        arrival_station: 'Genève-Aéroport',
+                        arrival_time: '2012-05-04T12:56:00+00:00',
+                        train_id: 'ICN 518'
                     }]
                 })
                 .end(function(result){
