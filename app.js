@@ -97,7 +97,7 @@ app.post('/v1/checkin', function(req, res){
     });
 });
 
-app.get('/v1/read', function(req, res){
+app.post('/v1/read', function(req, res){
     worker.read({
         request: req,
         response: res,
