@@ -11,7 +11,7 @@
     "soupselect": "0.2.0",
     "querystring": "0.1.0",
     "superagent": "0.4.0",
-    "express": "2.5.8",
+    "express": "2.5.9",
     "mysql": "0.9.5",
     "node-neo4j": ">=0.1.1",
     "twitter": "0.1.18",
@@ -21,10 +21,11 @@
   },
   "devDependencies": {
     "mocha": ">= 0.3.0",
-    "should": ">= 0.5.1"
+    "should": ">= 0.5.1",
+    "request": "2.9.202"
   },
   "engines": {
-    "node": "0.6.11"
+    "node": "0.6.17"
   },
   "repository": {
     "type": "git",
