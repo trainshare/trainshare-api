@@ -1,5 +1,6 @@
 var should = require('should'),
-    request = require('superagent');
+    request = require('superagent'),
+    request_original = require('request');
 
 var api_url = 'http://localhost:5000/v1/checkin';
 
@@ -88,6 +89,29 @@ describe('=> Testing the /checkin API endpoint', function(){
                 .send({
                     trainshare_token: trainshare_token,
                     data: [{
+                        departure_station: 'Bern',
+                        departure_time: '2012-04-09T16:34:00+00:00',
+                        arrival_station: 'Basel SBB',
+                        arrival_time: '2012-04-09T17:29:00+00:00',
+                        train_id: 'IC 1080'
+                    }]
+                })
+                .end(function(result){
+                    result.statusCode.should.equal(200);
+                    done();
+                });
+        });
+
+        it('should return a valid response with only sending an array of 2', function(done){
+
+            request_original.post({
+                url: api_url + '?trainshare_id=' + trainshare_id,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    trainshare_token: trainshare_token,
+                    data: [{
                         departure_station: 'Siebnen-Wangen',
                         departure_time: '2012-05-04T09:03:00+00:00',
                         arrival_station: 'Zürich HB',
@@ -101,10 +125,10 @@ describe('=> Testing the /checkin API endpoint', function(){
                         train_id: 'ICN 518'
                     }]
                 })
-                .end(function(result){
-                    result.statusCode.should.equal(200);
-                    done();
-                });
+            }, function(err, response, body){
+                response.statusCode.should.equal(200);
+                done();
+            });
         });
     });
 });
