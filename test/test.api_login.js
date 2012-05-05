@@ -59,12 +59,39 @@ describe('=> Testing the /login API endpoint', function(){
                 });
         });
 
-        it('should return a correct response', function(done){
+        it('should return a correct response with twitter', function(done){
             request.post(api_url + '/login')
                 .send({
                     network: 'twitter',
                     access_token: '6848912-Pbfyb6IKViwL5dSvkEbUKFGeCX1HKxayRftnO7v14c',
                     access_token_secret: 'WtATrHj9UHPTsad4J1QyAVjffErMTyctPiyxk6KpvYE'
+                })
+                .end(function(res){
+                    res.statusCode.should.equal(200);
+                    res.body.trainshare_id.length.should.equal(36);
+                    res.body.trainshare_token.length.should.equal(36);
+                    done();
+                });
+        });
+
+        it('should return an error message with a wrong or outdated facebook access_token', function(done){
+            request.post(api_url + '/login')
+                .send({
+                    network: 'facebook',
+                    access_token: 'foobar'
+                })
+                .end(function(res){
+                    res.statusCode.should.equal(400);
+                    res.body.error.should.equal('Invalid response from Facebook');
+                    done();
+                });
+        });
+
+        it('should return a correct response with facebook', function(done){
+            request.post(api_url + '/login')
+                .send({
+                    network: 'facebook',
+                    access_token: 'AAABhY12QxPUBAEqtRHznM9Q4ZAORSzNNd5B7DS6SJGmpVv8trM6JvSQR2ZBZCYX9YPXno5srLTaglwSP8PZAxxdRhrz8AZCypCFlUgty7XAZDZD'
                 })
                 .end(function(res){
                     res.statusCode.should.equal(200);
