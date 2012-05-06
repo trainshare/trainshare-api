@@ -31,8 +31,8 @@ describe('=> Testing the /checkin API endpoint', function(){
 
         it('should return an error by sending an empty POST body', function(done){
             request
-                .post(api_url + '?trainshare_id=499fee3c-4a00-4382-bbc4-9b3fc0a49e04')
-                .send({})
+                .post(api_url)
+                .send({trainshare_id: '499fee3c-4a00-4382-bbc4-9b3fc0a49e04'})
                 .end(function(result){
                     result.body.error.should.equal('Invalid POST body');
                     result.statusCode.should.equal(400);
@@ -42,9 +42,12 @@ describe('=> Testing the /checkin API endpoint', function(){
     });
     
     
-    // Creating a real user.
-    var trainshare_id = null;
-    var trainshare_token = null;
+    // Creating real users.
+    var user1_trainshare_id = null;
+    var user1_trainshare_token = null;
+
+    var user2_trainshare_id = null;
+    var user2_trainshare_token = null;
 
     before(function(done){
         request.post('http://localhost:5000/v1/login')
@@ -54,17 +57,29 @@ describe('=> Testing the /checkin API endpoint', function(){
                 access_token_secret: 'WtATrHj9UHPTsad4J1QyAVjffErMTyctPiyxk6KpvYE' 
             })
             .end(function(res){
-                trainshare_id = res.body.trainshare_id;
-                trainshare_token = res.body.trainshare_token;
-                done();
+                user1_trainshare_id = res.body.trainshare_id;
+                user1_trainshare_token = res.body.trainshare_token;
+
+                request.post('http://localhost:5000/v1/login')
+                    .send({
+                       network: 'twitter',
+                        access_token: '333949978-eFDeye3eOIo29R0wRCHvatGn4RjcKc675ljPpQdw',
+                        access_token_secret: 'az2AmimLdggQo6rrGeAAFVVi41LjOR1LDjoCw5kNkY' 
+                    })
+                    .end(function(res){
+                        user2_trainshare_id = res.body.trainshare_id;
+                        user2_trainshare_token = res.body.trainshare_token;
+                        done();
+                    });
             });
     });
 
     describe('-> Make a request with an outdated trainshare_token', function(){
         it('should return an error message', function(done){
             request
-                .post(api_url + '?trainshare_id=' + trainshare_id)
+                .post(api_url)
                 .send({
+                    trainshare_id: user1_trainshare_id,
                     trainshare_token: '499fee3c-4a00-4382-bbc4-9b3fc0aa9e04',
                     data: [{
                         departure_station: 'Bern',
@@ -85,9 +100,10 @@ describe('=> Testing the /checkin API endpoint', function(){
     describe('-> Make a request with a valid POST body', function(){
         it('should return a valid response with only sending an array of 1', function(done){
             request
-                .post(api_url + '?trainshare_id=' + trainshare_id)
+                .post(api_url)
                 .send({
-                    trainshare_token: trainshare_token,
+                    trainshare_id: user1_trainshare_id,
+                    trainshare_token: user1_trainshare_token,
                     data: [{
                         departure_station: 'Bern',
                         departure_time: '2012-04-09T16:34:00+00:00',
@@ -102,15 +118,40 @@ describe('=> Testing the /checkin API endpoint', function(){
                 });
         });
 
-        it('should return a valid response with only sending an array of 2', function(done){
+        it('should return a valid response with only sending an array of 1 with UTF-8 characters', function(done){
 
             request_original.post({
-                url: api_url + '?trainshare_id=' + trainshare_id,
+                url: api_url,
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    trainshare_token: trainshare_token,
+                    trainshare_id: user2_trainshare_id,
+                    trainshare_token: user2_trainshare_token,
+                    data: [{
+                        departure_station: 'Zürich HB',
+                        departure_time: '2012-05-04T10:04:00+00:00',
+                        arrival_station: 'Genève-Aéroport',
+                        arrival_time: '2012-05-04T12:56:00+00:00',
+                        train_id: 'ICN 518'
+                    }]
+                })
+            }, function(err, response, body){
+                response.statusCode.should.equal(200);
+                done();
+            });
+        });
+
+        it('should return a valid response with only sending an array of 2', function(done){
+
+            request_original.post({
+                url: api_url,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    trainshare_id: user1_trainshare_id,
+                    trainshare_token: user1_trainshare_token,
                     data: [{
                         departure_station: 'Siebnen-Wangen',
                         departure_time: '2012-05-04T09:03:00+00:00',
