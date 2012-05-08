@@ -171,6 +171,36 @@ describe('=> Testing the /checkin API endpoint', function(){
                 done();
             });
         });
+
+        it('should return a valid response with having someone else signed up before', function(done){
+
+            request_original.post({
+                url: api_url,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    trainshare_id: user2_trainshare_id,
+                    trainshare_token: user2_trainshare_token,
+                    data: [{
+                        departure_station: 'Siebnen-Wangen',
+                        departure_time: '2012-05-04T09:03:00+00:00',
+                        arrival_station: 'Zürich HB',
+                        arrival_time: '2012-05-04T09:50:00+00:00',
+                        train_id: 'S2 18234'
+                    }, {
+                        departure_station: 'Zürich HB',
+                        departure_time: '2012-05-04T10:04:00+00:00',
+                        arrival_station: 'Genève-Aéroport',
+                        arrival_time: '2012-05-04T12:56:00+00:00',
+                        train_id: 'ICN 518'
+                    }]
+                })
+            }, function(err, response, body){
+                response.statusCode.should.equal(200);
+                done();
+            });
+        });
     });
 });
 
