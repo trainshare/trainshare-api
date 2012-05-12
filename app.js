@@ -43,23 +43,27 @@ var client = mysql.createClient({
 client.query(
     'CREATE TABLE routes_users (id INT NOT NULL AUTO_INCREMENT, routes_id INT NOT NULL, users_id INT NOT NULL, PRIMARY KEY (id))',
     function(err, results, fields){
-        if(err && typeof err.message !== 'undefined' && err.message !== "Table \'routes_users\' already exists"){
-            console.log(err);
-        } else {
-            console.log('creating routes_users table if necessary');
-        }
-    });
+        if(err && err.number === 1050){ // MySQL: ER_TABLE_EXISTS_ERROR
+			console.log('table "routes_users" already exists. ok.');
+		}else if(null === err){
+			console.log('table "routes_users" created.');
+		}else{
+			console.log(err);
+		}            	
+	});
 
 // users -> needed to store Neo4j Node ID and unique identifier for network.
 client.query(
     'CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT, node_id INT NOT NULL, facebook_uid VARCHAR(40) NULL, twitter_uid VARCHAR(40) NULL, trainshare_id VARCHAR(40) NULL, trainshare_token VARCHAR(40) NULL, PRIMARY KEY (id))',
     function(err, results, fields){
-        if(err && typeof err.message !== 'undefined' && err.message !== "Table \'users\' already exists"){
-            console.log(err);
-        } else {
-            console.log('creating users table if necessary');
-        }
-    });
+        if(err && err.number == 1050) { // MySQL: ER_TABLE_EXISTS_ERROR
+			console.log('table "users" already exists. ok.');
+		} else if(null === err) {
+			console.log('table "users" created.');
+		} else {
+			console.log(err);
+		}    	
+	});
 
 
 /* ROUTES ------------- */
