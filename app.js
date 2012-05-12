@@ -12,7 +12,8 @@ var express = require('express'),
     moment = require('moment'),
     util = require('util'),
     events = require('events').EventEmitter,
-    Worker = require('./lib/worker');
+    Worker = require('./lib/worker'),
+    config = require('./config');
 
 // Initialize EventEmitter based Worker
 util.inherits(Worker, events);
@@ -30,11 +31,11 @@ app.configure(function(){
 
 // Instantiate MySQL client
 var client = mysql.createClient({
-    user: process.env.MYSQL_USER ? process.env.MYSQL_USER : 'root',
-    password: process.env.MYSQL_PASSWORD ? process.env.MYSQL_PASSWORD : '',
-    database: process.env.MYSQL_DATABASE ? process.env.MYSQL_DATABASE : 'trainsharing',
-    port: process.env.MYSQL_PORT ? process.env.MYSQL_PORT : 3306,
-    host: process.env.MYSQL_HOST ? process.env.MYSQL_HOST : 'localhost'
+    user: config.mysql.user,
+    password: config.mysql.password,
+    database: config.mysql.database,
+    port: config.mysql.port,
+    host: config.mysql.host
 });
 
 /* MAKE SURE ALL THE TABLES ARE THERE ----------- */
