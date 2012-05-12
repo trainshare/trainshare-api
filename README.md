@@ -31,7 +31,10 @@ As a final step clone this repo and install the npm dependencies.
 And run it.
 
     $ node app.js
-    
+
+## Configuration
+Take a look at config.js and fill out the missing settings.
+
 ## API documentation
 
 ### /login
