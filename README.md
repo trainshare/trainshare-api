@@ -36,10 +36,11 @@ And run it.
 ### Ubuntu
 
 Installing the server is nearly exactly the same as for OSX. Instead of using Homebrew we have to install Neo4J manually
-([Neo4J Download Page](http://neo4j.org/download_a/)) and for MySQL and npm we just run:
+([Neo4J Download Page](http://neo4j.org/download_a/)) and for MySQL, npm and nodejs we just run:
 
     $ sudo apt-get install mysql-server
     $ sudo apt-get install npm
+	$ sudo apt-get install nodejs
 
 To start Neo4J go to the folder you unpacked the downloaded archive and follow this steps:
 
