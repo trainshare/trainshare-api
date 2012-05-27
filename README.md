@@ -2,7 +2,8 @@
 
 An API for the trainshare apps which will connect you with your friends traveling by train.
 
-## Setup (OSX) - For running the API
+## Setup - For running the API
+### OSX
 
 Since OSX has no real packet manager go ahead and [install Homebrew](https://github.com/mxcl/homebrew/wiki/installation).
 
@@ -31,7 +32,26 @@ As a final step clone this repo and install the npm dependencies.
 And run it.
 
     $ node app.js
-    
+
+### Ubuntu
+
+Installing the server is nearly exactly the same as for OSX. Instead of using Homebrew we have to install Neo4J manually
+([Neo4J Download Page](http://neo4j.org/download_a/)) and for MySQL, npm and nodejs we just run:
+
+    $ sudo apt-get install mysql-server
+    $ sudo apt-get install npm
+	$ sudo apt-get install nodejs
+
+To start Neo4J go to the folder you unpacked the downloaded archive and follow this steps:
+
+    $ cd bin
+    $ ./neo4j start
+
+The rest is the same as for OSX. Go ahead and download the database dump and follow the instructions from there.
+
+## Configuration
+Take a look at config.js and fill out the missing settings.
+
 ## API documentation
 
 ### /login
