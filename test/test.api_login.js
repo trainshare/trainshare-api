@@ -87,19 +87,19 @@ describe('=> Testing the /login API endpoint', function(){
                 });
         });
 
-        it('should return a correct response with facebook', function(done){
-            request.post(api_url + '/login')
-                .send({
-                    network: 'facebook',
-                    access_token: 'AAABhY12QxPUBAODuPZAJCeCDYHH59jXtXB2AXLrOK5syZBVGiuyqDkx0BzFhqE0CsNFZCXr1yimM4pQ5xJlZBKsuauG3xEfbHPLD53aROAZDZD'
-                })
-                .end(function(res){
-                    res.statusCode.should.equal(200);
-                    res.body.trainshare_id.length.should.equal(36);
-                    res.body.trainshare_token.length.should.equal(36);
-                    done();
-                });
-        });
+        // it('should return a correct response with facebook', function(done){
+        //     request.post(api_url + '/login')
+        //         .send({
+        //             network: 'facebook',
+        //             access_token: 'AAABhY12QxPUBAODuPZAJCeCDYHH59jXtXB2AXLrOK5syZBVGiuyqDkx0BzFhqE0CsNFZCXr1yimM4pQ5xJlZBKsuauG3xEfbHPLD53aROAZDZD'
+        //         })
+        //         .end(function(res){
+        //             res.statusCode.should.equal(200);
+        //             res.body.trainshare_id.length.should.equal(36);
+        //             res.body.trainshare_token.length.should.equal(36);
+        //             done();
+        //         });
+        // });
     });
     
 });
