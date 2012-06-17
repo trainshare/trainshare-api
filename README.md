@@ -11,8 +11,6 @@ Then go ahead and install Neo4j aswell as MySQL.
 
     $ brew install neo4j
     $ brew install mysql
-    
-Import the [database dump](http://philippkueng.ch/files/trainsharing_routes.sql) used to make the matches into your MySQL Database.
 
 Now, if you haven't installed Node.js yet go ahead and follow the steps below.
 
@@ -23,11 +21,18 @@ Now, if you haven't installed Node.js yet go ahead and follow the steps below.
     $ sudo make
     $ sudo make install
 
-As a final step clone this repo and install the npm dependencies.
+Then clone this repo and install the npm dependencies.
 
     $ git clone git://github.com/philippkueng/trainsharingApp.git
     $ cd trainsharingApp/
     $ npm install
+
+Finally we need to prepare the database and insert a basic routes dataset
+
+    $ node migrate.js migrate
+    $ wget http://static.philippkueng.ch/trainsharing/trainshare_routes_table_sql_inserts.sql
+    $ mysql -u <username> -p <password>
+    $ mysql> source trainshare_routes_table_sql_inserts.sql
   
 And run it.
 
@@ -47,7 +52,7 @@ To start Neo4J go to the folder you unpacked the downloaded archive and follow t
     $ cd bin
     $ ./neo4j start
 
-The rest is the same as for OSX. Go ahead and download the database dump and follow the instructions from there.
+The rest is the same as for OSX. Go ahead and clone the trainshareApp repository.
 
 ## Configuration
 Take a look at config.js and fill out the missing settings.
