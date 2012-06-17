@@ -68,14 +68,14 @@ client.query(
 
 // routes_users
 client.query(
-    'SHOW TABLES LIKE "users"',
+    'SHOW TABLES LIKE "routes_users"',
     function(err, results, fields){
         if(results.length > 0){
-            console.log('table "users" exists. ok.');
+            console.log('table "routes_users" exists. ok.');
         }else if(err){
             console.log(err);
         }else{
-            throw new Error('table "users" does not exist.');
+            throw new Error('table "routes_users" does not exist.');
         }
     });
 
