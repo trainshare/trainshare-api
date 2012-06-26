@@ -569,7 +569,7 @@ Encoders['mysql'] = function() {
   }
 
   function remove_unique(unique) {
-    return "ALTER TABLE " + unique.table_name + " DROP UNIQUE (" + unique.name + ");\n"; 
+    return "ALTER TABLE " + unique.table_name + " DROP INDEX " + unique.name + ";\n"; 
   }
   
   return {
