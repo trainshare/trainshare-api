@@ -17,8 +17,7 @@
     "twitter": "0.1.18",
     "step": "0.0.5",
     "node-uuid": "1.3.3",
-    "moment": "1.5.1",
-    "amqp": "0.1.3"
+    "moment": "1.5.1"
   },
   "devDependencies": {
     "mocha": ">= 0.3.0",
