@@ -280,6 +280,22 @@ function RemoveIndex(table_name, index_name) {
 }
 
 /**
+ * Add Unique Constraint Representation
+ */
+function AddUnique(table_name, column_name) {
+  this.table_name = table_name;
+  this.name = column_name;
+}
+
+/**
+ * Remove Unique Constraint
+ */
+function RemoveUnique(table_name, column_name) {
+  this.table_name = table_name;
+  this.name = column_name;
+}
+
+/**
  * Migration object.
  */
 function Migration(opts) {
@@ -338,6 +354,14 @@ function Migration(opts) {
   
   this.remove_index = function(table_name, index_name) {
     encode(new RemoveIndex(table_name, index_name));
+  };
+
+  this.add_unique = function(table_name, column_name) {
+    encode(new AddUnique(table_name, column_name));
+  };
+
+  this.remove_unique = function(table_name, column_name) {
+    encode(new RemoveUnique(table_name, column_name));
   };
 
   /**
@@ -539,6 +563,14 @@ Encoders['mysql'] = function() {
   function remove_index(index) {
     return "ALTER TABLE " + index.table_name + " DROP INDEX (" + index.name + ");\n";
   }
+
+  function add_unique(unique) {
+    return "ALTER TABLE " + unique.table_name + " ADD UNIQUE (" + unique.name + ");\n";
+  }
+
+  function remove_unique(unique) {
+    return "ALTER TABLE " + unique.table_name + " DROP UNIQUE (" + unique.name + ");\n"; 
+  }
   
   return {
     encode: function(o) {
@@ -562,6 +594,10 @@ Encoders['mysql'] = function() {
         return add_index(o);
       else if (o instanceof RemoveIndex)
         return remove_index(o);
+      else if (o instanceof AddUnique)
+        return add_unique(o);
+      else if (o instanceof RemoveUnique)
+        return remove_unique(o);
       else
         throw "Error: MySQL Encoder Encountered Unknown Rule Type.";
     }
