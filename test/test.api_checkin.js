@@ -63,8 +63,8 @@ describe('=> Testing the /checkin API endpoint', function(){
                 request.post('http://localhost:5000/v1/login')
                     .send({
                        network: 'twitter',
-                        access_token: '333949978-eFDeye3eOIo29R0wRCHvatGn4RjcKc675ljPpQdw',
-                        access_token_secret: 'az2AmimLdggQo6rrGeAAFVVi41LjOR1LDjoCw5kNkY' 
+                        access_token: '333949978-OoDPh35UnmZvUxJ8q8MSDdamvfaPDksk42TT8BPI',
+                        access_token_secret: 'vAzq9qqDzKG3AagVrWK7lMdiGbBBJRdMi2cRilKk' 
                     })
                     .end(function(res){
                         user2_trainshare_id = res.body.trainshare_id;

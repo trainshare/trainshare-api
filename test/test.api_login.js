@@ -74,6 +74,21 @@ describe('=> Testing the /login API endpoint', function(){
                 });
         });
 
+        it('should return a correct response with twitter with a different user', function(done){
+            request.post(api_url + '/login')
+                .send({
+                    network: 'twitter',
+                    access_token: '333949978-OoDPh35UnmZvUxJ8q8MSDdamvfaPDksk42TT8BPI',
+                    access_token_secret: 'vAzq9qqDzKG3AagVrWK7lMdiGbBBJRdMi2cRilKk'
+                })
+                .end(function(res){
+                    res.statusCode.should.equal(200);
+                    res.body.trainshare_id.length.should.equal(36);
+                    res.body.trainshare_token.length.should.equal(36);
+                    done();
+                });
+        });
+
         it('should return an error message with a wrong or outdated facebook access_token', function(done){
             request.post(api_url + '/login')
                 .send({
