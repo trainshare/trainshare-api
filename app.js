@@ -26,7 +26,9 @@ var app = express.createServer();
 
 // Configure Express
 app.configure(function(){
-   app.use(express.bodyParser()); 
+   app.use(express.bodyParser());
+   var oneYear = 31557600000;
+   app.use(express.static(__dirname + '/static', {maxAge: oneYear}));
 });
 
 // Instantiate MySQL client
@@ -122,11 +124,6 @@ app.post('/v1/read', function(req, res){
         mysql: client,
         moment: moment
     });
-});
-
-app.get('/:file', function(req, res){
-    console.log(req.params.file);
-    res.sendfile('static/' + req.params.file);
 });
 
 app.listen(process.env.PORT || 5000);
